@@ -12,9 +12,9 @@ variables:
   # Container registry service connection established during pipeline creation
   azureSubscription: '73a07d77-6765-4050-b870-a877c6f2cdfb'
   appName: 'wbctest78'
+  containerRegistry: 'crtest78'
   dockerRegistryServiceConnection: '68abb1e2-864f-4a3f-8866-9ac1453f6a41'
   imageRepository: 'gitrepo'
-  containerRegistry: 'crtest78.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
