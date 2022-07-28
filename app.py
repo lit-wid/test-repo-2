@@ -6,7 +6,7 @@ host_port = 80
 
 @app.route('/')
 def hello():
-    return "try eighth `/ping!"
+    return "try nineth `/ping!"
 
 @app.route('/ping')
 def ping():
