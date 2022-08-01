@@ -39,22 +39,24 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-- stage: update_acr
+- stage: update_aca
+  displayName : update container apps
   jobs:
-  - job: "update_acr"
-    steps:
+    - job: update
+      displayName: update
+      steps:
       - task: AzureCLI@2
-        displayName: 'Deploy RG and ACR'
         inputs:
-          azureSubscription: 'thomasthorntoncloud'
-          scriptType: bash
-          scriptLocation: inlineScript
-          addSpnToEnvironment: true
+          azureSubscription: 'jiyoung 2 - testbRG connection'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
           inlineScript: |
-            #!/bin/bash
-            RESOURCE_GROUP="test-b-RG"
-            ACA="catest789"
+            RESOURCE_GROUP = "test-b-RG"
+            ACA = "catest789"
+            IMAGE = "crtest789.azurecr.io/gitrepo:'$(Build.BuildId)'"
+            
             az containerapp update \
-            --name $ACA \
-            --resource-group $RESOURCE_GROUP \
-            --image crtest789.azurecr.io/gitrepo:'$(Build.BuildId)'
+              --name $ACA \
+              --resource-group $RESOURCE_GROUP \
+              --image $IMAGE
+          addSpnToEnvironment: true
