@@ -51,12 +51,9 @@ stages:
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |
-            RESOURCE_GROUP = "test-b-RG"
-            ACA = "catest789"
-            IMAGE = "crtest789.azurecr.io/gitrepo:'$(Build.BuildId)'"
-            
+           
             az containerapp update \
-              --name $ACA \
-              --resource-group $RESOURCE_GROUP \
-              --image $IMAGE
+              --name catest789 \
+              --resource-group test-b-RG \
+              --image crtest789.azurecr.io/gitrepo:'$(Build.BuildId)'
           addSpnToEnvironment: true
