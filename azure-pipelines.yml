@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   azureSubscription: '35daef8c-5deb-496d-a160-d79c3778bc47'
-  appName: 'wac789'
+  #appName: 'wac789'
   dockerRegistryServiceConnection: 'c80da904-1694-4081-95b2-12dadfa3014b'
   imageRepository: 'gitrepo'
   containerRegistry: 'crtest789.azurecr.io'
@@ -39,10 +39,21 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    ## Add the below snippet at the end of your pipeline
-    - task: AzureWebAppContainer@1
-      displayName: 'Azure Web App on Container Deploy'
-      inputs:
-        azureSubscription: $(azureSubscription)
-        appName: $(appName)
-        imageName: $(containerRegistry)/$(imageRepository):$(tag)
+- stage: update_aca
+  displayName : update container apps
+  jobs:
+    - job: update
+      displayName: update
+      steps:
+      - task: AzureCLI@2
+        inputs:
+          azureSubscription: 'jiyoung 2 - testbRG connection'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az config set extension.use_dynamic_install=yes_without_prompt
+            az containerapp update \
+              --name catest789 \
+              --resource-group test-b-RG \
+              --image crtest789.azurecr.io/gitrepo:'$(Build.BuildId)'
+          addSpnToEnvironment: true
