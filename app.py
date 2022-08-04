@@ -29,8 +29,10 @@ def hello():
             msg = "Database does not exist"
         else:
             print(err)
+            msg = "err"
     else:
         cursor = conn.cursor()
+        msg = "cusor = conn.cursor()"
 
     return msg
 #    return "try fifteenth `/ping!"
