@@ -1,6 +1,6 @@
 from flask import Flask
-#import mysql.connector
-#from mysql.connector import errorcode
+import mysql.connector
+from mysql.connector import errorcode
 
 
 config = {
