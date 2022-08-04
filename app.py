@@ -18,6 +18,7 @@ host_port = 80
 @app.route('/')
 def hello():
 
+    msg = ""
     try:
         conn = mysql.connector.connect(**config)
         msg = "Connection established"
