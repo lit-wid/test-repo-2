@@ -1,4 +1,13 @@
 from flask import Flask
+import mysql.connector
+from mysql.connector import errorcode
+
+config = {
+  'host':'mysql789.mysql.database.azure.com',
+  'user':'mysqluser',
+  'password':'jyPassw.rd1234',
+  'database':'mysql789'
+}
 
 app = Flask(__name__)
 host_addr = "0.0.0.0"
@@ -6,7 +15,20 @@ host_port = 80
 
 @app.route('/')
 def hello():
-    return "try fifteenth `/ping!"
+    try:
+        conn = mysql.connector.connect(**config)
+        return "Connection established"
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            return "Something is wrong with the user name or password"
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            return "Database does not exist"
+        else:
+            print(err)
+            pass
+    else:
+        cursor = conn.cursor()
+    #return "try fifteenth `/ping!"
 
 @app.route('/ping')
 def ping():
