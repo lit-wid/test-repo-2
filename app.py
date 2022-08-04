@@ -20,18 +20,18 @@ def hello():
 
     try:
         conn = mysql.connector.connect(**config)
-        return "Connection established"
+        msg = "Connection established"
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            return "Something is wrong with the user name or password"
+            msg = "Something is wrong with the user name or password"
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            return "Database does not exist"
+            msg = "Database does not exist"
         else:
             print(err)
-            pass
     else:
         cursor = conn.cursor()
 
+    return msg
 #    return "try fifteenth `/ping!"
 
 
