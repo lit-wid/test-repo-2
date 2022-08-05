@@ -45,6 +45,21 @@ def pong():
         cursor = conn.cursor()
         msg = "cusor = conn.cursor()"
     
+    # Read data
+    cursor.execute("SELECT * FROM movies;")
+    rows = cursor.fetchall()
+    print("Read",cursor.rowcount,"row(s) of data.")
+
+    # Print all rows
+    for row in rows:
+        print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))
+
+    # Cleanup
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print("Done.")
+
     return msg
 
 
