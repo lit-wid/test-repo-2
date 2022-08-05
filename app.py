@@ -24,12 +24,8 @@ def hello():
 def ping():
     return {'response': 'pong'}
 
-if __name__ == "__main__":
-    app.run(debug=True,
-            host=host_addr,
-            port=host_port)
-    
-    #msg = ""
+@app.route('/pong')
+def pong():
     try:
         conn = mysql.connector.connect(**config)
         print("Connection established")
@@ -44,3 +40,12 @@ if __name__ == "__main__":
     else:
         cursor = conn.cursor()
         print("cusor = conn.cursor()")
+
+
+if __name__ == "__main__":
+    app.run(debug=True,
+            host=host_addr,
+            port=host_port)
+    
+    #msg = ""
+    
