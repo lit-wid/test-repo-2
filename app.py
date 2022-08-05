@@ -17,26 +17,8 @@ host_port = 80
 
 @app.route('/')
 def hello():
-
-    msg = ""
-    try:
-        conn = mysql.connector.connect(**config)
-        msg = "Connection established"
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            msg = "Something is wrong with the user name or password"
-        elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            msg = "Database does not exist"
-        else:
-            print(err)
-            msg = "err"
-    else:
-        cursor = conn.cursor()
-        msg = "cusor = conn.cursor()"
-
-    return msg
-#    return "try fifteenth `/ping!"
-
+    #return msg
+    return "try `/ping!"
 
 @app.route('/ping')
 def ping():
@@ -46,3 +28,19 @@ if __name__ == "__main__":
     app.run(debug=True,
             host=host_addr,
             port=host_port)
+    
+    #msg = ""
+    try:
+        conn = mysql.connector.connect(**config)
+        print("Connection established")
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+            print("Something is wrong with the user name or password")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("Database does not exist")
+        else:
+            print(err)
+            #msg = "err"
+    else:
+        cursor = conn.cursor()
+        print("cusor = conn.cursor()")
