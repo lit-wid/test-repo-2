@@ -26,20 +26,26 @@ def ping():
 
 @app.route('/pong')
 def pong():
+    msg = ""
     try:
         conn = mysql.connector.connect(**config)
-        print("Connection established")
+        msg = "Connection established"
+        #print("Connection established")
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print("Something is wrong with the user name or password")
+            msg = "Something is wrong with the user name or password"
+            #print("Something is wrong with the user name or password")
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            print("Database does not exist")
+            msg = "Database does not exist"
+            #print("Database does not exist")
         else:
             print(err)
-            #msg = "err"
+            msg = err
     else:
         cursor = conn.cursor()
         print("cusor = conn.cursor()")
+    
+    return msg
 
 
 if __name__ == "__main__":
