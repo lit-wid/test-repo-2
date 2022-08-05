@@ -7,7 +7,7 @@ config = {
   'host':'mysql789.mysql.database.azure.com',
   'user':'mysqluser',
   'password':'jyPassw.rd1234',
-  'database':'mysql789'
+  'database':'movies'
 }
 
 
@@ -43,7 +43,7 @@ def pong():
             msg = err
     else:
         cursor = conn.cursor()
-        print("cusor = conn.cursor()")
+        msg = "cusor = conn.cursor()"
     
     return msg
 
