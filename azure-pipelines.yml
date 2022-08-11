@@ -53,7 +53,7 @@ stages:
           inlineScript: |
             az config set extension.use_dynamic_install=yes_without_prompt
             az containerapp update \
-              --name catest789 \
+              --name catest753 \
               --resource-group test-b-RG \
               --image crtest789.azurecr.io/gitrepo:'$(Build.BuildId)'
           addSpnToEnvironment: true
