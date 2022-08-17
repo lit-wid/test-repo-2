@@ -7,7 +7,7 @@ config = {
   'host':'mysqltest789.mysql.database.azure.com',
   'user':'mysqluser',
   'password':'jyPassw.rd1234',
-  'database':'movies'
+  'database':'inventory'
 }
 
 app = Flask(__name__)
@@ -68,7 +68,7 @@ def pong():
     print("Inserted",cursor.rowcount,"row(s) of data.")
     cursor.execute("INSERT INTO inventory (name, quantity) VALUES (%s, %s);", ("apple", 100))
     print("Inserted",cursor.rowcount,"row(s) of data.")
-    
+
     # Cleanup
     conn.commit()
     cursor.close()
