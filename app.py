@@ -4,12 +4,11 @@ from mysql.connector import errorcode
 
 
 config = {
-  'host':'mysql789.mysql.database.azure.com',
+  'host':'mysqltest789.mysql.database.azure.com',
   'user':'mysqluser',
   'password':'jyPassw.rd1234',
   'database':'movies'
 }
-
 
 app = Flask(__name__)
 host_addr = "0.0.0.0"
@@ -44,7 +43,7 @@ def pong():
     else:
         cursor = conn.cursor()
         msg = "cusor = conn.cursor()"
-    
+    '''
     # Read data
     cursor.execute("SELECT * FROM movies;")
     rows = cursor.fetchall()
@@ -52,13 +51,28 @@ def pong():
 
     # Print all rows
     for row in rows:
-        print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))
+        print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))'''
 
+    # Drop previous table of same name if one exists
+    cursor.execute("DROP TABLE IF EXISTS inventory;")
+    print("Finished dropping table (if existed).")
+
+    # Create table
+    cursor.execute("CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);")
+    print("Finished creating table.")
+
+    # Insert some data into table
+    cursor.execute("INSERT INTO inventory (name, quantity) VALUES (%s, %s);", ("banana", 150))
+    print("Inserted",cursor.rowcount,"row(s) of data.")
+    cursor.execute("INSERT INTO inventory (name, quantity) VALUES (%s, %s);", ("orange", 154))
+    print("Inserted",cursor.rowcount,"row(s) of data.")
+    cursor.execute("INSERT INTO inventory (name, quantity) VALUES (%s, %s);", ("apple", 100))
+    print("Inserted",cursor.rowcount,"row(s) of data.")
+    
     # Cleanup
     conn.commit()
     cursor.close()
     conn.close()
-    print("Done.")
 
     return msg
 
