@@ -5,7 +5,7 @@ from mysql.connector import errorcode
 
 config = {
   'host':'mysqltest789.mysql.database.azure.com',
-  'user':'mysqluser',
+  'user':'sqluser',
   'password':'jyPassw.rd1234',
   'database':'inventory'
 }
