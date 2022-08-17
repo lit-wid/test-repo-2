@@ -62,14 +62,14 @@ def pong():
     print("Inserted",cursor.rowcount,"row(s) of data.")
 
     # Read data
-    cursor.execute("SELECT * FROM movies;")
+    cursor.execute("SELECT * FROM inventory;")
     rows = cursor.fetchall()
     print("Read",cursor.rowcount,"row(s) of data.")
 
     # Print all rows
     for row in rows:
-        print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))
-        
+        msg += "Data row = (%s, %s, %s)\n" %(str(row[0]), str(row[1]), str(row[2]))
+
     # Cleanup
     conn.commit()
     cursor.close()
