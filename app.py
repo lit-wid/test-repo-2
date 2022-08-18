@@ -4,10 +4,10 @@ from mysql.connector import errorcode
 
 
 config = {
-  'host':'$azure-mysql-host-ae458',
-  'user':'$azure-mysql-user-768a0',
-  'password':'$azure-mysql-password-53dcb',
-  'database':'$azure-mysql-name-3f1a9'
+  'host':'$AZURE_MYSQL_HOST',
+  'user':'$AZURE_MYSQL_USER',
+  'password':'$AZURE_MYSQL_PASSWORD',
+  'database':'$AZURE_MYSQL_NAME'
 }
 
 app = Flask(__name__)
