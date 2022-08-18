@@ -1,14 +1,7 @@
 from flask import Flask
 import mysql.connector
 from mysql.connector import errorcode
-
-
-config = {
-  'host':'$(AZURE_MYSQL_HOST)',
-  'user':'$(AZURE_MYSQL_USER)',
-  'password':'$(AZURE_MYSQL_PASSWORD)',
-  'database':'$(AZURE_MYSQL_NAME)'
-}
+import config
 
 app = Flask(__name__)
 host_addr = "0.0.0.0"
@@ -27,7 +20,7 @@ def ping():
 def pong():
     msg = ""
     try:
-        conn = mysql.connector.connect(**config)
+        conn = mysql.connector.connect(user='$(user)', host='$(host)', password='$(password)', database='$(database)',)
         msg = "Connection established\n"
         #print("Connection established")
     except mysql.connector.Error as err:
