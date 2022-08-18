@@ -55,7 +55,7 @@ stages:
           db = {
             'host':'$(host)',
             'user':'$(user)',
-            'password':'$(dbpass)',
+            'password':'$(password)',
             'database':'$(database)'
           }
           ' >> config.py
