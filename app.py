@@ -4,10 +4,10 @@ from mysql.connector import errorcode
 
 
 config = {
-  'host':'mysqltest789.mysql.database.azure.com',
-  'user':'sqluser',
-  'password':'jyPassw.rd1234',
-  'database':'inventory'
+  'host':'azure-mysql-host-ae458',
+  'user':'azure-mysql-user-768a0',
+  'password':'azure-mysql-password-53dcb',
+  'database':'azure-mysql-name-3f1a9'
 }
 
 app = Flask(__name__)
@@ -28,21 +28,21 @@ def pong():
     msg = ""
     try:
         conn = mysql.connector.connect(**config)
-        msg = "Connection established"
+        msg = "Connection established\n"
         #print("Connection established")
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            msg = "Something is wrong with the user name or password"
+            msg = "Something is wrong with the user name or password\n"
             #print("Something is wrong with the user name or password")
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
-            msg = "Database does not exist"
+            msg = "Database does not exist\n"
             #print("Database does not exist")
         else:
             print(err)
             msg = err
     else:
         cursor = conn.cursor()
-        msg = "cusor = conn.cursor()"
+        msg = "cusor = conn.cursor()\n"
 
 
     # Drop previous table of same name if one exists
@@ -68,7 +68,7 @@ def pong():
 
     # Print all rows
     for row in rows:
-        msg += "Data row = (%s, %s, %s)\n" %(str(row[0]), str(row[1]), str(row[2]))
+        msg += "Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])) + '\n'
 
     # Cleanup
     conn.commit()
