@@ -7,6 +7,15 @@ app = Flask(__name__)
 host_addr = "0.0.0.0"
 host_port = 80
 
+config = {
+    'hostname':'mysqltest789.mysql.database.azure.com',
+    'username':'sqluser',
+    'password':'jyPassw.rd1234',
+    'database':'inventgory',
+    'ssl-mode':'require'
+}
+
+
 @app.route('/')
 def hello():
     #return msg
@@ -20,7 +29,7 @@ def ping():
 def pong():
     msg = ""
     try:
-        conn = mysql.connector.connect(user='$(user)', host='$(host)', password='$(password)', database='$(database)',)
+        conn = mysql.connector.connect(**config)
         msg = "Connection established\n"
         #print("Connection established")
     except mysql.connector.Error as err:
