@@ -1,6 +1,3 @@
-
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
 trigger:
 - main
 
@@ -38,27 +35,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-# Docker
-    - task: AzureKeyVault@2
-      inputs:
-        azureSubscription: 'jiyoung 2 - testbRG connection'
-        KeyVaultName: 'key753'
-        SecretsFilter: '*'
-        RunAsPreJob: true
-    - task: AzureCLI@2
-      inputs:
-        azureSubscription: 'jiyoung 2 - testbRG connection'
-        scriptType: 'batch'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          echo -e '
-          db = {
-            'host':'$(host)',
-            'user':'$(user)',
-            'password':'$(password)',
-            'database':'$(database)'
-          }
-          ' >> config.py
 # Build and push an image to Azure Container Registry
 - stage: update_aca
   displayName : update container apps
