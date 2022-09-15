@@ -1,7 +1,6 @@
 from flask import Flask
 import mysql.connector
 from mysql.connector import errorcode
-import config
 
 app = Flask(__name__)
 host_addr = "0.0.0.0"
