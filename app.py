@@ -11,8 +11,7 @@ config = {
     'hostname':'mysqltest789.mysql.database.azure.com',
     'username':'sqluser',
     'password':'jyPassw.rd1234',
-    'database':'inventgory',
-    'ssl-mode':'require'
+    'database':'inventgory'
 }
 
 
