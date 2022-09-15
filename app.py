@@ -7,7 +7,7 @@ host_addr = "0.0.0.0"
 host_port = 80
 
 config = {
-    'hostname':'mysqltest789.mysql.database.azure.com',
+    'host':'mysqltest789.mysql.database.azure.com',
     'username':'sqluser',
     'password':'jyPassw.rd1234',
     'database':'inventgory'
