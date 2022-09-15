@@ -10,7 +10,7 @@ config = {
     'host':'mysqltest789.mysql.database.azure.com',
     'username':'sqluser',
     'password':'jyPassw.rd1234',
-    'database':'inventgory'
+    'database':'inventory'
 }
 
 
